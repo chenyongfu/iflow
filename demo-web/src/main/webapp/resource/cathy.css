@@ -1,0 +1,27 @@
+.login-user{
+	background:url('images/user.png') no-repeat center center;
+}
+.login-lock{
+	background:url('images/lock.png') no-repeat center center;
+}
+
+.form-label{
+	font-size:12px;
+}
+
+.message {
+	color:#ff0000;
+	font-size:12px;
+}
+.login-button {
+	color:#ffffff;
+	font-size:13px;
+	border:none;
+	cursor:pointer;
+	border-radius: 5px 5px 5px 5px;
+	background-image:url('images/blank-button.png');
+	margin-top:-2px;
+	margin-left:20px;
+	width :53px;
+	height:26px;
+}

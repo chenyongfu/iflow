@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	   xmlns:context="http://www.springframework.org/schema/context"
+	   xsi:schemaLocation="http://www.springframework.org/schema/beans
+			http://www.springframework.org/schema/beans/spring-beans.xsd
+	       	http://www.springframework.org/schema/context
+	      	http://www.springframework.org/schema/context/spring-context.xsd">
+
+
+	<!-- spring组件扫描路径,多个包用,分隔 -->
+    <context:component-scan base-package="com.iflow, com.demo.web.controller" />
+
+
+	<!-- spring工具 -->
+	<bean id="springUtil" class="com.iflow.util.SpringUtil" scope="singleton" lazy-init="false" />
+
+
+	<!-- 配置工作流数据源 -->
+	<bean id="dataSourceAdapter" class="com.iflow.util.DataSourceAdapter" >
+		<property name="dataSource" ref="dataSource"></property>
+	</bean>
+
+
+	<!-- 业务数据源 -->
+	<bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource" init-method="init" destroy-method="close" >
+
+		<property name="driverClassName" value="com.mysql.cj.jdbc.Driver" />
+		<property name="url" value="jdbc:mysql://127.0.0.1:3306/iflow4project?useUnicode=true&amp;characterEncoding=UTF-8&amp;serverTimezone=PRC" />
+		<property name="username" value="root" />
+		<property name="password" value="123456" />
+
+		<property name="filters" value="stat" />
+
+		<property name="maxActive" value="20" />
+		<property name="initialSize" value="1" />
+		<property name="maxWait" value="60000" />
+		<property name="minIdle" value="1" />
+
+		<property name="timeBetweenEvictionRunsMillis" value="60000"/>
+		<property name="minEvictableIdleTimeMillis" value="300000"/>
+
+		<property name="validationQuery" value="SELECT 'x'" />
+		<property name="testWhileIdle" value="true" />
+		<property name="testOnBorrow" value="false" />
+		<property name="testOnReturn" value="false" />
+
+		<property name="poolPreparedStatements" value="true" />
+		<property name="maxPoolPreparedStatementPerConnectionSize" value="50"/>
+	</bean>
+
+	
+</beans>

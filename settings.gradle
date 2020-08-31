@@ -1,0 +1,8 @@
+rootProject.name = "iflow-parent"
+
+
+include 'iflow-api'
+include "iflow-core"
+
+include 'demo-web'
+

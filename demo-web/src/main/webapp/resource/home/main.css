@@ -1,0 +1,22 @@
+ui, li {
+	list-style: none;
+}
+
+a {
+	color: #FFF;
+	text-decoration: none;
+}
+
+#help {
+	color: #FFF;
+	margin-top: 15px;
+	margin-right: 20px;
+}
+
+#help label {
+	float: left;
+	margin-top: 2px;
+	margin-right: 10px;
+	text-shadow: 0 1px 1px rgba(0, 0, 0, .5);
+}
+ 

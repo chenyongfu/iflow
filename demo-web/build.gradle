@@ -1,0 +1,49 @@
+
+apply plugin: 'java'
+apply plugin: 'war'
+
+
+repositories {
+    mavenCentral()
+    mavenLocal()
+}
+
+dependencies {
+
+    compile project(":iflow-core")
+
+    compile group: 'javax.servlet', name: 'javax.servlet-api', version: '3.1.0'
+
+    compile group: 'mysql', name: 'mysql-connector-java', version: '8.0.21'
+    compile group: 'com.alibaba', name: 'druid', version: '1.1.23'
+
+    compile group: 'org.springframework', name: 'spring-beans', version: spring_version
+    compile group: 'org.springframework', name: 'spring-context', version: spring_version
+    compile group: 'org.springframework', name: 'spring-web', version: spring_version
+    compile group: 'org.springframework', name: 'spring-webmvc', version: spring_version
+    compile group: 'org.apache.commons', name: 'commons-lang3', version: '3.10'
+    compile group: 'javax.persistence', name: 'javax.persistence-api', version: '2.2'
+
+    compile group: 'javax.servlet', name: 'jstl', version: '1.2'
+    compile group: 'taglibs', name: 'standard', version: '1.1.2'
+
+
+
+}
+
+// jar命令,自定义生成manifest文件
+jar {
+    String classpath = ''
+    configurations.runtime.each {
+        classpath = classpath +" lib/"+ it.name
+    }
+    manifest {
+        attributes 'Main-Class': 'com.iflow.ServiceApplication'
+        attributes 'Class-Path': classpath
+    }
+}
+
+task exportJar(type:Copy){
+    from configurations.runtime
+    into ('build/libs/lib')
+}
